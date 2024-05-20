@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WebMedicine;
@@ -11,9 +12,11 @@ using WebMedicine;
 namespace WebMedicine.Migrations
 {
     [DbContext(typeof(MedicineContext))]
-    partial class MedicineContextModelSnapshot : ModelSnapshot
+    [Migration("20240520093549_roles")]
+    partial class roles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -290,7 +293,7 @@ namespace WebMedicine.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly?>("DateOfBirth")
+                    b.Property<DateOnly>("DateOfBirth")
                         .HasColumnType("date")
                         .HasColumnName("date_of_birth");
 
@@ -299,11 +302,13 @@ namespace WebMedicine.Migrations
                         .HasColumnName("date_of_death");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("first_name");
 
                     b.Property<string>("Gender")
+                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("character varying(10)")
                         .HasColumnName("gender");
@@ -313,6 +318,7 @@ namespace WebMedicine.Migrations
                         .HasColumnName("higher_education");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("last_name");

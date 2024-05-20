@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using WebMedicine.Models;
 
 namespace WebMedicine.Controllers
 {
+    [Authorize]
     public class PeopleController : Controller
     {
         private readonly MedicineContext _context;
@@ -44,6 +46,7 @@ namespace WebMedicine.Controllers
         }
 
         // GET: People/Create
+        [AllowAnonymous]
         public IActionResult Create()
         {
             return View();
@@ -51,8 +54,9 @@ namespace WebMedicine.Controllers
 
         // POST: People/Create
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,LastName,FirstName,Patronymic,DateOfBirth,DateOfDeath,PhoneNumber,HigherEducation,Gender")] Person person)
+        public async Task<IActionResult> Create([Bind("Id,LastName,FirstName,Patronymic,DateOfBirth,DateOfDeath,PhoneNumber,Password,Role,HigherEducation,Gender")] Person person)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +86,7 @@ namespace WebMedicine.Controllers
         // POST: People/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,LastName,FirstName,Patronymic,DateOfBirth,DateOfDeath,PhoneNumber,HigherEducation,Gender")] Person person)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,LastName,FirstName,Patronymic,DateOfBirth,DateOfDeath,PhoneNumber,Password,Role,HigherEducation,Gender")] Person person)
         {
             if (id != person.Id)
             {

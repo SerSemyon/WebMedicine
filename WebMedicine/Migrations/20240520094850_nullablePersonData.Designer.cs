@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WebMedicine;
@@ -11,9 +12,11 @@ using WebMedicine;
 namespace WebMedicine.Migrations
 {
     [DbContext(typeof(MedicineContext))]
-    partial class MedicineContextModelSnapshot : ModelSnapshot
+    [Migration("20240520094850_nullablePersonData")]
+    partial class nullablePersonData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

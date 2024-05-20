@@ -1,31 +1,28 @@
 ﻿@model IEnumerable<WebMedicine.Models.Doctorvisit>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Записи к врачу";
 }
 
-<h1>Index</h1>
+<h1> Записи на приём к врачу </h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary"> Записаться к врачу</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                Дата приема
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SymptomsDescription)
+                Симптомы
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Conclusion)
+                Лечащий врач
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Doctor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patient)
+                Заключение врача
             </th>
             <th></th>
         </tr>
@@ -40,18 +37,14 @@
                 @Html.DisplayFor(modelItem => item.SymptomsDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Conclusion)
-            </td>
+                @Html.DisplayFor(modelItem => item.Doctor.Person.GetFullName())
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Conclusion)
+                </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Doctor.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Patient.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Изменить запись</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id"> Отменить запись </a>
             </td>
         </tr>
 }

@@ -17,7 +17,11 @@ public partial class Person
 
     public DateOnly? DateOfDeath { get; set; }
 
-    public string? PhoneNumber { get; set; }
+    public string PhoneNumber { get; set; }
+
+    public string Password { get; set; }
+
+    public string Role { get; set; }
 
     public bool? HigherEducation { get; set; }
 
@@ -30,4 +34,9 @@ public partial class Person
     public virtual ICollection<Patientfeature> Patientfeatures { get; set; } = new List<Patientfeature>();
 
     public virtual ICollection<Visit> Visits { get; set; } = new List<Visit>();
+
+    public string GetFullName()
+    {
+        return $"{LastName} {FirstName} {Patronymic}";
+    }
 }
