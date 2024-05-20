@@ -25,6 +25,15 @@ namespace WebMedicine.Controllers
             return View(await _context.Medicationcatalogs.ToListAsync());
         }
 
+        // GET: Medicationcatalogs
+        [Route("поиск/{name?}")]
+        public async Task<IActionResult> Search(string? name)
+        {
+            return View(await _context.Medicationcatalogs
+                .Where(m => m.Name == name)
+                .ToListAsync());
+        }
+
         // GET: Medicationcatalogs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
